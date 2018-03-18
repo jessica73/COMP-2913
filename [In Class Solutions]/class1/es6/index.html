@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+  <body>
+    <script>
+      function test() {
+        for (let i = 0; i < 5; i++) {
+          console.log(i);
+        }
+        // console.log('value of i', i);
+      }
+
+      test();
+      // console.log(i);
+
+      // ES5
+      setTimeout(function() {
+        console.log('Log this after 1 second! (1000ms)');
+      }, 1000);
+
+      // ES6 - supports multiple lines
+      setTimeout(() => {
+        console.log('Log this after 2 seconds! (2000ms)');
+      }, 2000);
+
+      // ES6 - 1 liner
+      setTimeout(() => console.log('Log this after 3 seconds! (3000ms)'), 3000);
+
+      const letters = ['A', 'B', 'C'];
+      // ES5
+      letters.forEach(function(letter) {
+        console.log('ES5', letter);
+      });
+
+      // ES6
+      letters.forEach(letter => console.log('ES6', letter));
+
+      function multiply(a, b = 2) {
+        return a * b;
+      }
+
+      console.log(multiply(10, 5));
+      console.log(multiply(10));
+
+
+      const someQuery = 'dog';
+      // ES5
+      console.log('http://google.ca?search=' + someQuery + '&limit=1');
+
+      // ES6
+      console.log(`http://google.ca?search=${someQuery}&limit=1`);
+
+      const name = 'John';
+      const age = 25;
+      const locationName = 'Vancouver';
+
+      const person1 = { name: name, age: age, home: locationName };
+      const person2 = { name, age, home: locationName };
+      console.log('person1', person1);
+      console.log('person2', person2);
+
+      const person3 = {
+        // ES5
+        getName: function() {
+          return 'John';
+        },
+        // ES6
+        getAge() {
+          return 25;
+        }
+      };
+
+      console.log(person3.getName(), person3.getAge());
+
+    </script>
+  </body>
+</html>
