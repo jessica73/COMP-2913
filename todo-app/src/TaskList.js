@@ -11,44 +11,46 @@ class TaskList extends React.Component {
             tasks: []
         }
 
-        this.handleNewTask = this.handleNewTask.bind(this);
-        this.handleTaskDone = this.handleTaskDone.bind(this);
+        this.handlePushTask = this.handlePushTask.bind(this);
+        this.handlePopTask = this.handlePopTask.bind(this);
     }
 
     // add the new task to the list
-    handleNewTask(task) {
-        let newList = this.state.tasks;
-        newList.push(task);        
+    handlePushTask(task) {
+        const { tasks } = this.state;
+        tasks.push(task);
         this.setState({
-            tasks: newList
+            tasks: tasks
         });
     }
 
     // remove the checked item from the array
-    handleTaskDone(index) {
-        let newList = this.state.tasks;
-        newList.splice(index,1);
+    handlePopTask(index) {
+        const { tasks } = this.state;
+        tasks.splice(index,1);
         this.setState({
-            tasks: newList
-        })
+            tasks: tasks
+        });
     }
 
     render() {
         return(
             <div>
                 <NewTaskForm
-                    onClick={this.handleNewTask}
+                    onClick={this.handlePushTask}
                 />
-                <ul style={{ listStyle: 'none' }}>
-                    {this.state.tasks.map((task,index) => (
-                        <TaskListItem
-                            key={index}
-                            index={index}
-                            task={task}
-                            onClick={this.handleTaskDone}
-                        />
-                    ))}
-                </ul>
+                <div style={{ margin: 'auto', width: '600px' }}>
+                    <ul style={{ listStyle: 'none', textAlign: 'left' }}>
+                        {this.state.tasks.map((task,index) => (
+                            <TaskListItem
+                                key={index}
+                                index={index}
+                                task={task}
+                                onClick={this.handlePopTask}
+                            />
+                        ))}
+                    </ul>
+                </div>
             </div>
         );
     }

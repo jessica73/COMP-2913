@@ -1,4 +1,5 @@
 import React from 'react';
+import checkbox from './img/CheckboxUncheck.png';
 
 class TaskListItem extends React.Component {
     constructor(props) {
@@ -15,7 +16,16 @@ class TaskListItem extends React.Component {
     render() {
         return(
             <li>
-                <input type="checkbox" onChange={this.handleClick}/>{this.props.task}
+                <img src={checkbox} alt="" style={{ marginRight: '10px' }} onClick={this.handleClick} />{this.props.task}
+                {/* 
+                    if checkbox input used, when an item is clicked, it drops off the list but then the next item in the list "inherits" the check mark
+                    for example, checking 1 results in it dropping off but then 2 ends up with the checkmark
+                        [ ] 1    [x] 1    [x] 2    
+                        [ ] 2    [ ] 2    [ ] 3
+                        [ ] 3    [ ] 3
+                    as a workaround, use a click-able image instead
+                 */}
+                {/* <input type="checkbox" onChange={this.handleClick}/>{this.props.task} */}
             </li>
         );
     }

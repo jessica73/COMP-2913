@@ -5,7 +5,7 @@ class NewTaskForm extends React.Component {
         super(props);
 
         this.state = {
-            value: ''
+            task: ''
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -14,24 +14,28 @@ class NewTaskForm extends React.Component {
 
     handleChange(event) {
         this.setState({
-            value: event.target.value
+            task: event.target.value
         });        
     }
     
     handleSubmit(event) {
-        let task = this.state.value.trim();
+        event.preventDefault();
+
+        let { task } = this.state;
+        task = task.trim();
 
         // do not add empty/blank tasks
-        if (task !== "") {
-            // bubble task up to parent to add to list
-            this.props.onClick(task);
-            // clear textbox
-            this.setState({
-                value: ''
-            })
+        if (!task) {
+            alert("Task may not be blank!");
+            return;
         }
-
-        event.preventDefault();
+        
+        // bubble task up to parent to add to list
+        this.props.onClick(task);
+        // reset textbox
+        this.setState({
+            task: ''
+        });
     }
 
     render() {
@@ -39,7 +43,7 @@ class NewTaskForm extends React.Component {
             <form onSubmit={this.handleSubmit}>
                 <label>
                     Task:&nbsp;
-                    <input type="text" value={this.state.value} onChange={this.handleChange} />
+                    <input type="text" value={this.state.task} onChange={this.handleChange} />
                 </label>
                 &nbsp;
                 <input type="submit" value="Add Task" />
