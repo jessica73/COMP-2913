@@ -43,10 +43,15 @@ class TaskList extends React.Component {
                     <ul style={{ listStyle: 'none', textAlign: 'left' }}>
                         {this.state.tasks.map((task,index) => (
                             <TaskListItem
-                                key={index}
+                                // if only index used, the checkbox state was being carried over to the next item in the list
+                                // (i.e., if item 5 checked, item 6 is remapped to index 5 and inherits the checkbox of the old item 5)
+                                // to workaround this, use a compound key so react does not match the old checkbox to the updated list
+                                // note: this is not foolproof - if the same task is entered one after another, the inherited checkbox state will occur
+                                // either a unique ID or a better compound key is needed to solve
+                                key={index+'|'+task}
                                 index={index}
                                 task={task}
-                                onClick={this.handlePopTask}
+                                onTaskDone={this.handlePopTask}
                             />
                         ))}
                     </ul>
