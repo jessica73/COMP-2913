@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import ScoreBoard from './ScoreBoard';
 import PlayerChoice from './PlayerChoice';
-import scissorsImage from '../assets/scissors.png';
-import rockImage from '../assets/rock.png';
-import paperImage from '../assets/paper.png';
+import scissorsImage from '../../assets/scissors.png';
+import rockImage from '../../assets/rock.png';
+import paperImage from '../../assets/paper.png';
 
 function getComputerChoice() {
   const randomNumber = Math.random() * 100;
